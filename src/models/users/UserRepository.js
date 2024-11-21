@@ -1,4 +1,4 @@
-import User from "./User.js"
+import User from "./Jogo.js"
 
 class UsersRepository {
     constructor(){
