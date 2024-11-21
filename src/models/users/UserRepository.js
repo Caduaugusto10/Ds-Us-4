@@ -16,14 +16,14 @@ class UsersRepository {
         return newUser
     }
 
-    getUserById(id) {
-        const user = this.users.find((u) => u.id == id)
+    getJogadorById(id) {
+        const jogador = this.jogadores.find((u) => u.id == id)
 
-        if (!user) {
+        if (!jogador) {
             return null
         }
 
-        return user
+        return jogador
     }
 
     updateUser(id, name, email, password){
