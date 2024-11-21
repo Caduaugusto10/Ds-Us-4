@@ -1,15 +1,15 @@
 import { Router } from "express";
 import UsersRepository from "../models/users/UserRepository.js";
 
-const usuariosRoutes = Router();
+const alunosRoutes = Router();
 const usersList = new UsersRepository()
 
-
-usuariosRoutes.get("/", (req, res) => {
-    const usuarios = usersList.getAllUsers()
+//método get
+alunosRoutes.get("/", (req, res) => {
+    const alunos = aluList.getAllalu()
 
     return res.status(200).json({
-        message: usuarios.length == 0 ? "Não há usuários cadastrados" : `Total de usuários: ${usuarios.length}`, usuarios
+        message: alunos.length == 0 ? "Não há usuários alunos" : `Total de alunos: ${alunos.length}`, alunos
     })
 })
 
@@ -23,10 +23,10 @@ usuariosRoutes.post("/", (req, res) => {
     })
 })
 
-usuariosRoutes.get("/:id", (req, res) => {
+alunosRoutes.get("/:id", (req, res) => {
     const { id } = req.params
 
-    const user = usersList.getUserById(id)
+    const aluno = usersList.getUserById(id)
 
     if(!user) {
         return res.status(404).json({
