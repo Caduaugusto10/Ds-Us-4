@@ -24,20 +24,21 @@ alunosRoutes.post("/", (req, res) => {
     })
 })
 
+//método get by id
 alunosRoutes.get("/:id", (req, res) => {
     const { id } = req.params
 
-    const aluno = usersList.getUserById(id)
+    const jogador = jogadoresList.getJogadorById(id)
 
-    if(!user) {
+    if(!jogador) {
         return res.status(404).json({
-            message: `Usuário com id ${id} não encontrado`,
+            message: `Jogador com id ${id} não encontrado`,
         })
     }
 
     return res.status(200).json ({
-        message: `Usuário com id ${id} encontrado`,
-        user,
+        message: `Jogador com id ${id} encontrado`,
+        jogador,
     })
 })
 
