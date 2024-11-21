@@ -2,18 +2,18 @@ import { Router } from "express";
 import UsersRepository from "../models/users/UserRepository.js";
 
 const alunosRoutes = Router();
-const usersList = new UsersRepository()
+const alunoList = new UsersRepository()
 
 //método get
 alunosRoutes.get("/", (req, res) => {
-    const alunos = aluList.getAllalu()
+    const alunos = alunoList.getAllalunos()
 
     return res.status(200).json({
-        message: alunos.length == 0 ? "Não há usuários alunos" : `Total de alunos: ${alunos.length}`, alunos
+        message: alunos.length == 0 ? "Não há alunos" : `Total de alunos: ${aluno.length}`, alunos
     })
 })
 
-usuariosRoutes.post("/", (req, res) => {
+alunosRoutes.post("/", (req, res) => {
     const { name, email, password } = req.body
 
     const user = usersList.addUser(name, email, password)
@@ -40,7 +40,7 @@ alunosRoutes.get("/:id", (req, res) => {
     })
 })
 
-usuariosRoutes.put("/:id", (req, res) => {
+alunosRoutes.put("/:id", (req, res) => {
     const { id } = req.params
 
     const { name, email, password } = req.body
@@ -60,9 +60,9 @@ usuariosRoutes.put("/:id", (req, res) => {
 
 })
 
-usuariosRoutes.delete("/:id", (req, res) => {
+alunosRoutes.delete("/:id", (req, res) => {
 
 })
 
 
-export default usuariosRoutes;
+export default alunosRoutes;
