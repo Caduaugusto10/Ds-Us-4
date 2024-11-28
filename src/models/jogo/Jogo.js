@@ -7,11 +7,11 @@ class Jogo {
         this.timerVotacao = null;
         this.votacaoAtiva = false;
         this.quizzes = new Quiz();
-    }  
+    }
 
     verificarNomeExistente(nome) {
         if (/\d/.test(nome)) {
-            throw new Error("Nome não pode conter números. Escolha outro."); //O 'throw new Error' ele é um comando que lança um erro este erro interrompe a execução do código.
+            throw new Error("Nome não pode conter números. Escolha outro.");
         }
 
         const nomeExistente = this.alunos.some(
@@ -22,35 +22,35 @@ class Jogo {
         }
     }
 
-    verificarApelidoExistente(apelido) {
+    verificarApelidoExistente(apelido) { // Verifica se o apelido já existe na lista de alunos
         const apelidoExistente = this.alunos.some(
             (a) => String(a.apelido) === String(apelido)
         );
-        if (apelidoExistente) {
+        if (apelidoExistente) { // Se o apelido já existir, lança um erro
             throw new Error(`Aluno com apelido ${apelido} já existe. Escolha outro.`);
         }
     }
 
-    adicionarAluno(aluno) {
+    adicionarAluno(aluno) { // Adiciona um novo aluno à lista de alunos
         this.alunos.push(aluno);
     }
 
-    mostrarAlunos(grupo = null, nome = null) {
+    mostrarAlunos(grupo = null, nome = null) { // Verifica se há alunos cadastrados, se não houver, lança um erro
         if (this.alunos.length === 0) {
             throw new Error("Não há alunos cadastrados.");
         }
 
-        const alunosFiltrados = this.alunos.filter(
+        const alunosFiltrados = this.alunos.filter( // Filtra os alunos de acordo com os parâmetros de grupo e nome, se fornecidos
             (a) =>
                 (!grupo || a.grupo == grupo) &&
                 (!nome || a.nome.toLowerCase() === nome.toLowerCase())
         );
 
-        if (alunosFiltrados.length === 0) {
+        if (alunosFiltrados.length === 0) {     // Se nenhum aluno for encontrado após o filtro, lança um erro
             throw new Error("Nenhum aluno encontrado para os filtros especificados.");
         }
 
-        const alunosAgrupados = alunosFiltrados.reduce((acc, aluno) => {
+        const alunosAgrupados = alunosFiltrados.reduce((acc, aluno) => {     // Agrupa os alunos filtrados (continuação do código não fornecida)
             const grupoKey = `Grupo ${aluno.grupo}`;
             if (!acc[grupoKey]) acc[grupoKey] = [];
             acc[grupoKey].push({
@@ -66,7 +66,7 @@ class Jogo {
             .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
             .reduce((acc, [grupo, alunos]) => {
                 const quantidade = alunos.length;
-                acc[`${grupo} com ${quantidade} aluno${quantidade > 1 ? "s" : ""}`] =
+                acc[`${grupo} com ${quantidade} aluno${quantidade > 1 ? "s" : ""}`] =      // Adiciona a quantidade de alunos em cada grupo ao resultado final
                     alunos;
                 return acc;
             }, {});
