@@ -7,11 +7,11 @@ class Jogo {
         this.timerVotacao = null;
         this.votacaoAtiva = false;
         this.quizzes = new Quiz();
-    }
+    }  
 
     verificarNomeExistente(nome) {
         if (/\d/.test(nome)) {
-            throw new Error("Nome não pode conter números. Escolha outro.");
+            throw new Error("Nome não pode conter números. Escolha outro."); //O 'throw new Error' ele é um comando que lança um erro este erro interrompe a execução do código.
         }
 
         const nomeExistente = this.alunos.some(
