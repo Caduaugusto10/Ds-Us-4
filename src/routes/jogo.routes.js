@@ -1,68 +1,21 @@
 import { Router } from "express";
-import UsersRepository from "../models/jogo/JogoRepository.js";
 
-const usuariosRoutes = Router();
-const usersList = new UsersRepository()
+const cadastroRoutes = Router();
 
+cadastroRoutes.post("/adicionar", (req, res) => {
 
-usuariosRoutes.get("/", (req, res) => {
-    const usuarios = usersList.getAllUsers()
+});
 
-    return res.status(200).json({
-        message: usuarios.length == 0 ? "Não há usuários cadastrados" : `Total de usuários: ${usuarios.length}`, usuarios
-    })
-})
+cadastroRoutes.get("/listar", (req, res) => {
 
-usuariosRoutes.post("/", (req, res) => {
-    const { name, email, password } = req.body
+});
 
-    const user = usersList.addUser(name, email, password)
-    return res.status(201).json({
-        message: "Usuário cadastrado com sucesso!",
-        user,
-    })
-})
+cadastroRoutes.put("/atualizar", (req, res) => {
 
-usuariosRoutes.get("/:id", (req, res) => {
-    const { id } = req.params
+});
 
-    const user = usersList.getUserById(id)
+cadastroRoutes.delete("/remover", (req, res) => {
 
-    if(!user) {
-        return res.status(404).json({
-            message: `Usuário com id ${id} não encontrado`,
-        })
-    }
+});
 
-    return res.status(200).json ({
-        message: `Usuário com id ${id} encontrado`,
-        user,
-    })
-})
-
-usuariosRoutes.put("/:id", (req, res) => {
-    const { id } = req.params
-
-    const { name, email, password } = req.body
-
-    const user = usersList.updateUser(id, name, email, password)
-
-    if (!user) {
-        return res.status(404).json({
-            message: `Usuário com id ${id} não encontrado`,
-        })
-    }
-
-    return res.status(200).json ({
-        message: `Usuário com id ${id} encontrado`,
-        user,
-    })
-
-})
-
-usuariosRoutes.delete("/:id", (req, res) => {
-
-})
-
-
-export default usuariosRoutes;
+export default cadastroRoutes;
