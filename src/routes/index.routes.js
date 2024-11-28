@@ -7,6 +7,9 @@ import alunosRoutes from "./alunos.routes.js";
 
 import usuariosRoutes from "./jogo.routes.js";
 
+import jogosRoutes from "./jogos.routes.js";
+
+
 
 const routes = Router();
 
