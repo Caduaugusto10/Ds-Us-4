@@ -40,4 +40,4 @@ class JogoRepository {
     }
 }
 
-export default JogoRepository
+export default JogoRepository;

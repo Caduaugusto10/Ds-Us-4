@@ -1,8 +1,3 @@
-import Sabotador from "./Sabotador.js";
-import Dev from "./Dev.js";
-import Chat from "./Chat.js";
-import Quiz from "./Quiz.js";
-
 class Jogo {
     constructor() {
         this.alunos = [];
