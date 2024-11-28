@@ -6,29 +6,29 @@ const alunoList = new UsersRepository()
 
 //método get
 alunosRoutes.get("/", (req, res) => {
-    const alunos = alunoList.getAllalunos()
+    const aluno = alunoList.getAllUsers()
 
     return res.status(200).json({
-        message: alunos.length == 0 ? "Não há alunos" : `Total de alunos: ${aluno.length}`, alunos
+        message: alunos.length == 0 ? "Não há alunos" : `Total de alunos: ${alunos.length}`, aluno
     })
 })
 
 alunosRoutes.post("/", (req, res) => {
     const { name, email, password } = req.body
 
-    const user = usersList.addUser(name, email, password)
+    const aluno = alunoList.addUser(name, email, password)
     return res.status(201).json({
         message: "Usuário cadastrado com sucesso!",
-        user,
+        aluno,
     })
 })
 
 alunosRoutes.get("/:id", (req, res) => {
     const { id } = req.params
 
-    const aluno = usersList.getUserById(id)
+    const aluno = alunosList.getUserById(id)
 
-    if(!user) {
+    if(!aluno) {
         return res.status(404).json({
             message: `Usuário com id ${id} não encontrado`,
         })
