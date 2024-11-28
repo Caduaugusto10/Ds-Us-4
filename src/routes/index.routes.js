@@ -1,9 +1,10 @@
 import { Router } from "express";
 
+
 // Lista de importação das rotas do projeto
 
 import alunosRoutes from "./alunos.routes.js";
-=======
+
 import usuariosRoutes from "./jogo.routes.js";
 
 
@@ -17,4 +18,15 @@ routes.get("/", (req, res) => {
 // Lista de uso das rotas do projeto
 routes.use("/alunos", alunosRoutes);
 
-export default routes;
+const rotas = Router();
+
+rotas.get("/", (req, res) => {
+  res.status(200).send("Servidor rodando e pronto para uso!");
+});
+
+
+rotas.use((req, res) => {
+  res.status(404).json({ message: "Rota não encontrada." });
+});
+
+export default rotas;
