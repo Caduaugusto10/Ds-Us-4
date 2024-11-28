@@ -1,5 +1,5 @@
 import { Router } from "express";
-import UsersRepository from "../models/users/UserRepository.js";
+import UsersRepository from "../models/jogo/JogoRepository.js";
 
 const usuariosRoutes = Router();
 const usersList = new UsersRepository()

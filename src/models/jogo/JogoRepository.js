@@ -1,6 +1,6 @@
-import User from "./Jogo.js"
+import Jogo from "./Jogo.js"
 
-class UsersRepository {
+class JogoRepository {
     constructor(){
         this.users = []
     }
@@ -40,4 +40,4 @@ class UsersRepository {
     }
 }
 
-export default UsersRepository
+export default JogoRepository
