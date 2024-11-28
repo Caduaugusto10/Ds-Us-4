@@ -62,6 +62,7 @@ class Jogo {
             return acc;
         }, {});
 
+        // Ordena e formata os grupos e alunos para exibição
         const resultadoFinal = Object.entries(alunosAgrupados)
             .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
             .reduce((acc, [grupo, alunos]) => {
@@ -71,6 +72,7 @@ class Jogo {
                 return acc;
             }, {});
 
+        // Cria uma tabela para exibição no console
         const tabelaConsole = alunosFiltrados
             .sort((a, b) => {
                 if (a.grupo === b.grupo) {
@@ -92,7 +94,7 @@ class Jogo {
         return resultadoFinal;
     }
 
-    removerAluno(nome) {
+    removerAluno(nome) { //Encontra o aluno pelo nome e o remove da lista de alunos
         const aluno = this.alunos.findIndex((a) => a.nome === nome);
         if (aluno === -1) {
             return null;
@@ -100,7 +102,7 @@ class Jogo {
         return this.alunos.splice(aluno, 1)[0];
     }
 
-    mostrarJogadores(dados) {
+    mostrarJogadores(dados) { // Cria uma tabela com os dados dos jogadores
         const tabelaComInstancia = dados.map((d) => {
             const {
                 grupo,
@@ -128,8 +130,10 @@ class Jogo {
     }
 
     iniciarJogo() {
+        //Escolhe um grupo aleatório para ser o grupo dos sabotadores
         const grupoEscolhido = Math.floor(Math.random() * this.grupos) + 1;
 
+        //Converte os alunos em jogadores, sendo os do grupo escolhido sabotadores e os demais desenvolvedores
         this.alunos.forEach((aluno) => {
             let jogador;
 
@@ -145,7 +149,7 @@ class Jogo {
         this.mostrarJogadores(this.jogadores);
     }
 
-    encontrarJogadorPorSenha(senha) {
+    encontrarJogadorPorSenha(senha) { //Encontra um jogador pela senha
         const jogador = this.jogadores.find((j) => j.pegarSenha() === senha);
         if (!jogador) {
             throw new Error("Senha inválida ou jogador não encontrado.");
@@ -153,7 +157,7 @@ class Jogo {
         return jogador;
     }
 
-    verPapel(senha) {
+    verPapel(senha) { //Encontra um jogador pela senha e retorna seu papel
         const jogador = this.encontrarJogadorPorSenha(senha);
         if (!jogador) {
             throw new Error("Senha inválida ou jogador não encontrado.");
@@ -170,7 +174,7 @@ class Jogo {
         return jogador;
     }
 
-    iniciarVotacao() {
+    iniciarVotacao() { //Inicia uma votação se não houver uma em andamento
         if (this.votacaoAtiva) {
             throw new Error(
                 "Votação já em andamento. Corra para o Auditório, discuta no Chat e decida seu voto antes de encerrar a votação!!!"
@@ -185,7 +189,7 @@ class Jogo {
         this.timerVotacao = setTimeout(() => this.encerrarVotacao(), 6 * 60 * 1000);
     }
 
-    encerrarVotacao() {
+    encerrarVotacao() { // Encerra a votação, elimina os jogadores mais votados e reseta os votos
         const maxVotos = Math.max(...this.jogadores.map((j) => j.votos));
         const maisVotados = this.jogadores.filter(
             (j) => j.votos === maxVotos && j.estaVivo
