@@ -1,7 +1,11 @@
 import { Router } from "express";
 
 // Lista de importação das rotas do projeto
+
 import alunosRoutes from "./alunos.routes.js";
+=======
+import usuariosRoutes from "./jogo.routes.js";
+
 
 const routes = Router();
 
